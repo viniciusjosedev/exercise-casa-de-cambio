@@ -1,5 +1,12 @@
+body {
+	display: flex;
+	flex-direction: column;
+}
+
 .primeira-div {
-	background-color: #222222;
+	margin-top: 50px;
+	margin-left: 300px;
+	background-color: #222222;	
 	position: absolute;
 	width: 900px;
 	height: 583px;
@@ -15,20 +22,31 @@ p {
 }	
 
 .valores{
+	background-color: red;
 	width: 839px;
 	height: 218px;
 	display: flex;
 }
 
 .moeda-valor{
+	flex-direction: column;
 	position: absolute;
-	width: auto;
+	width: 94%;
 	height: auto;
 	background-color: blue;
+	align-items: center;
 	border-radius: 5px;
+	margin-top: 20px;
 }
 
-#div-moedas p {
+#div-moedas {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	justify-content: space-around;
+}
+
+#div-moedas div {
 	font-size: 20px;
 	color: white;
 }
