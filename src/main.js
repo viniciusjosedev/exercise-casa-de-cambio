@@ -1,8 +1,8 @@
 import './style.css';
-// import 	Swal from 'sweetalert2'
+import 	Swal from 'sweetalert2'
 
 const button = document.getElementsByTagName('button')[0]
-const api = 'https://api.exchangerate.host/latest?'
+const api = 'https://api.exchangerate.host/latest?base=Usd'
 let num = 0;
 
 function verific() {
@@ -30,11 +30,21 @@ function addItens(dict) {
 }
 
 function requireAPI() {
-	let input = document.getElementsByTagName('input')[0]
-	// Swal.fire('Good Job!')
-	return fetch(api + `base=${input.value}`).then(resultado => resultado.json())
-	.then(resultado => addItens(resultado.rates))
-}
+	try { 
+		let input = document.getElementsByTagName('input')[0]
+		if (input.value === '') {
+			throw new Error('O espaço laranja não pode ficar vazio!!')
+		}
+		return fetch(api + `base=${input.value}`).then(resultado => resultado.json())
+		.then(resultado => addItens(resultado.rates))
+	} catch(error) {
+		Swal.fire({
+			icon: 'error',
+			title: 'Digite uma moeda!!',
+			text: error.message,
+		})
+	}
+	}
 
 
 button.addEventListener('click', requireAPI)
